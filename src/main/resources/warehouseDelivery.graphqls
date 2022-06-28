@@ -1,0 +1,48 @@
+schema {
+    query : WarehouseDeliveryQuery
+    mutation: WarehouseDeliveryMutation
+}
+
+## Root type
+type WarehouseDeliveryQuery {
+    application : String
+    warehouseDelivery(deliveryId : String!) : WarehouseDeliveryResponse
+    allWarehouseDeliveries : [WarehouseDeliveryResponse]!
+    allWarehouseDeliveriesBydDeliveryStatus(deliveryStatus : Boolean!) : [WarehouseDeliveryResponse]
+}
+
+## Root type
+type WarehouseDeliveryMutation {
+    persistDeliveryData(warehouseDeliveryInput : WarehouseDeliveryInput) : WarehouseDeliveryResponse
+    persistDeliveriesData(warehouseDeliveryList : [WarehouseDeliveryInput]) : [WarehouseDeliveryResponse]
+    updateDeliveryStatus(deliveryStatus : Boolean, deliveryId : String) : WarehouseDeliveryResponse
+}
+
+type WarehouseDelivery {
+    deliveryId: String!
+    product: String!
+    supplier: String
+    quantity: Int!
+    expectedDate: String!
+    expectedWarehouse: String!
+    deliveryStatus: Boolean!
+}
+
+type WarehouseDeliveryResponse {
+    deliveryId: String!
+    product: String!
+    supplier: String
+    quantity: Int!
+    expectedDate: String!
+    expectedWarehouse: String!
+    deliveryStatus: Boolean!
+}
+
+input WarehouseDeliveryInput {
+    deliveryId: String!
+    product: String!
+    supplier: String
+    quantity: Int!
+    expectedDate: String!
+    expectedWarehouse: String!
+}
